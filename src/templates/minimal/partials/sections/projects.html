@@ -1,0 +1,17 @@
+{{#if items.length}}
+  <ol class="work-list">
+    {{#each items}}
+      <li class="work-list__item">
+        <h3 class="work-list__title">
+          {{#if href}}<a href="{{href}}">{{name}}</a>{{else}}{{#if externalHref}}<a href="{{externalHref}}"{{external externalHref}}>{{name}}</a>{{else}}{{name}}{{/if}}{{/if}}
+          {{#if featured}}<span class="work-list__flag">featured</span>{{/if}}
+        </h3>
+        {{#if taglineHtml}}<p class="work-list__tagline">{{{taglineHtml}}}</p>{{else}}{{#if descriptionHtml}}<div class="work-list__description prose">{{{descriptionHtml}}}</div>{{/if}}{{/if}}
+        {{#if technologyItems.length}}
+          <p class="work-list__stack">{{join technologyItems ", "}}</p>
+        {{/if}}
+        {{#if rangeLabel}}<p class="work-list__date"><time>{{rangeLabel}}</time></p>{{/if}}
+      </li>
+    {{/each}}
+  </ol>
+{{/if}}

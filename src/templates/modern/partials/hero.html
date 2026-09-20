@@ -1,0 +1,40 @@
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="container hero__inner">
+    <div class="hero__content">
+      {{#if profile.availability}}
+        <p class="hero__status"><span class="badge badge--{{profile.availability}}"></span>{{#if profile.availabilityNote}}{{profile.availabilityNote}}{{else}}{{#if profile.location}}Based in {{profile.location}}{{/if}}{{/if}}</p>
+      {{/if}}
+      <h1 class="hero__title" id="hero-title">{{profile.name}}</h1>
+      {{#if hero.headlineHtml}}<p class="hero__headline">{{{hero.headlineHtml}}}</p>{{/if}}
+      {{#if hero.shortBioHtml}}<p class="hero__bio">{{{hero.shortBioHtml}}}</p>{{/if}}
+
+      {{#if hero.primaryLinks.length}}
+        <div class="hero__actions">
+          {{#each hero.primaryLinks}}
+            <a class="btn {{#if @first}}btn--primary{{/if}}" href="{{href}}"{{external href}}>{{icon icon 18}}<span>{{label}}</span></a>
+          {{/each}}
+          {{#if sections.length}}<a class="btn btn--ghost" href="{{hero.scrollTarget}}"><span>View work</span>{{icon "arrow-right" 18}}</a>{{/if}}
+        </div>
+      {{/if}}
+
+      {{#if hero.highlights.length}}
+        <ul class="hero__stats">
+          {{#each hero.highlights}}
+            <li class="hero__stat"><span class="hero__stat-value">{{value}}</span><span class="hero__stat-label">{{label}}</span></li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </div>
+
+    <div class="hero__aside">
+      {{#if profile.avatar.src}}
+        <img class="hero__portrait" src="{{profile.avatar.src}}" alt="{{profile.avatar.alt}}" {{#if profile.avatar.width}}width="{{profile.avatar.width}}"{{/if}}{{#if profile.avatar.height}}height="{{profile.avatar.height}}"{{/if}} loading="eager" decoding="async" fetchpriority="high">
+      {{else}}
+        <span class="hero__portrait hero__portrait--monogram" aria-hidden="true">{{profile.monogram}}</span>
+      {{/if}}
+      {{#if hero.social.length}}
+        {{> components/social-list items=hero.social class="social--hero" label="Social profiles"}}
+      {{/if}}
+    </div>
+  </div>
+</section>

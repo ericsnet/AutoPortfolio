@@ -1,0 +1,5 @@
+<ul class="chip-list chip-list--large">
+  {{#each items}}
+    <li>{{> components/chip this}}{{#if years}}<span class="chip__suffix">{{years}} yr</span>{{/if}}</li>
+  {{/each}}
+</ul>

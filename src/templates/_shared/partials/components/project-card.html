@@ -1,0 +1,29 @@
+<article class="card card--project{{#if featured}} card--featured{{/if}}">
+  {{#if cover.src}}
+    <a class="card__media" href="{{#if href}}{{href}}{{else}}{{externalHref}}{{/if}}" tabindex="-1" aria-hidden="true">
+      <img src="{{cover.src}}" alt="{{cover.alt}}" loading="lazy" decoding="async"{{#if cover.width}} width="{{cover.width}}"{{/if}}{{#if cover.height}} height="{{cover.height}}"{{/if}}>
+    </a>
+  {{/if}}
+  <div class="card__body">
+    <header class="card__header">
+      <h3 class="card__title">
+        {{#if href}}<a href="{{href}}">{{name}}</a>{{else}}{{#if externalHref}}<a href="{{externalHref}}"{{external externalHref}}>{{name}}</a>{{else}}{{name}}{{/if}}{{/if}}
+      </h3>
+      {{#if featured}}<span class="badge badge--featured">{{icon "star" 14}}Featured</span>{{/if}}
+    </header>
+    {{#if status}}<p class="card__status"><span class="badge badge--{{status}}">{{status}}</span></p>{{/if}}
+    {{#if taglineHtml}}<p class="card__tagline">{{{taglineHtml}}}</p>{{else}}{{#if descriptionHtml}}<div class="card__description">{{{descriptionHtml}}}</div>{{/if}}{{/if}}
+    {{#if technologyItems.length}}
+      <ul class="chip-list chip-list--small" aria-label="Technologies">
+        {{#each technologyItems}}<li>{{> components/chip this}}</li>{{/each}}
+      </ul>
+    {{/if}}
+    <footer class="card__footer">
+      {{#if rangeLabel}}<p class="card__meta"><time>{{rangeLabel}}</time>{{#if role}} · <span>{{role}}</span>{{/if}}</p>{{/if}}
+      <ul class="card__links">
+        {{#each secondaryLinks}}<li><a href="{{href}}"{{external href}}>{{icon icon 16}}<span>{{label}}</span></a></li>{{/each}}
+        {{#if href}}<li><a class="card__more" href="{{href}}">Details{{icon "arrow-right" 16}}</a></li>{{/if}}
+      </ul>
+    </footer>
+  </div>
+</article>

@@ -1,0 +1,3 @@
+<ul class="chip-list chip-list--large">
+  {{#each items}}<li>{{> components/chip this}}{{#if proficiency}}<span class="chip__suffix">{{proficiency}}</span>{{/if}}</li>{{/each}}
+</ul>

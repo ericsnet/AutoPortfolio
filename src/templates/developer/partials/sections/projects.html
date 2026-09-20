@@ -1,0 +1,14 @@
+{{#if filters.length}}
+  <div class="term-filter" data-project-filter>
+    <p class="term-filter__prompt"><span class="term-prompt" aria-hidden="true">$</span> grep --tag</p>
+    <div class="term-filter__buttons" role="group" aria-label="Filter projects by tag">
+      <button class="term-btn term-btn--small" type="button" data-filter-value="*" aria-pressed="true">all</button>
+      {{#each filters}}
+        <button class="term-btn term-btn--small" type="button" data-filter-value="{{this}}" aria-pressed="false">{{this}}</button>
+      {{/each}}
+    </div>
+  </div>
+{{/if}}
+<div class="project-grid">
+  {{#each items}}{{> components/project-card this}}{{/each}}
+</div>

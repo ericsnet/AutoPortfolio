@@ -1,0 +1,396 @@
+# The portfolio document. Everything AutoPortfolio renders comes from here.
+version: "1.0"
+
+meta:
+  title: Eric Lönnrot — systems engineer
+  description: Systems engineer building search infrastructure, compilers and developer tooling in Rust, Go and TypeScript.
+  keywords: [systems engineering, Rust, search, compilers, developer tooling]
+  language: en
+  locale: en-GB
+  siteUrl: https://eric.example.com
+  themeColor: "#4ade80"
+
+profile:
+  name: Eric Lönnrot
+  headline: Systems engineer · search infrastructure & developer tooling
+  shortBio: I build fast, boring infrastructure — search indexes, compilers and the tools teams use every day.
+  about: |
+    I am a systems engineer focused on the unglamorous parts of software: the
+    index that answers in 8 ms, the build that stopped flaking, the CLI that
+    saved a hundred colleagues an hour a week.
+
+    Most of my work lives close to the metal — allocators, schedulers, databases
+    — but I care just as much about the humans on the other side of the API. I
+    currently lead the search platform team at Nimbus Labs, and I write about
+    performance work on my blog.
+
+    Outside work I maintain a couple of Rust crates, run slowly, and make
+    espresso that is *far* better than the office machine.
+  avatar: assets/images/avatar.svg
+  pronouns: he/him
+  location: Lisbon, Portugal
+  company: Nimbus Labs
+  jobTitle: Staff engineer, search platform
+  availability: open-to-offers
+  availabilityNote: Open to staff/principal roles in systems or developer tooling
+  yearsOfExperience: 9
+  resume: https://eric.example.com/resume.pdf
+
+contact:
+  email: hello@eric.example.com
+  location: Lisbon, Portugal
+  timezone: Europe/Lisbon
+  preferred: email
+  message: The fastest way to reach me is email — I answer everything within a couple of days.
+  links:
+    calendly: https://cal.com/eric/intro
+
+social:
+  github:
+    url: https://github.com/eric
+    handle: "@eric"
+    primary: true
+  linkedin: https://linkedin.com/in/ericlonnrot
+  crates: https://crates.io/users/eric
+  blog: https://eric.example.com/blog
+  mastodon: https://mastodon.social/@eric
+
+skills:
+  - name: Distributed systems
+    category: Engineering
+    level: expert
+    years: 8
+    featured: true
+    keywords: [consensus, replication, sharding]
+  - name: Performance engineering
+    category: Engineering
+    level: expert
+    years: 9
+    featured: true
+  - name: Compilers & interpreters
+    category: Engineering
+    level: advanced
+    years: 6
+  - name: Observability
+    category: Engineering
+    level: advanced
+    years: 5
+  - name: Technical writing
+    category: Communication
+    level: advanced
+  - name: Mentoring
+    category: Communication
+    level: advanced
+    years: 6
+
+languages:
+  - name: Rust
+    level: expert
+    years: 7
+    description: Primary language for systems work and most of my open source.
+  - name: Go
+    level: advanced
+    years: 6
+  - name: TypeScript
+    level: advanced
+    years: 8
+  - name: Python
+    level: advanced
+    years: 10
+  - name: C
+    level: intermediate
+    years: 5
+  - name: SQL
+    level: advanced
+
+technologies:
+  - name: PostgreSQL
+    url: https://www.postgresql.org
+  - name: Redis
+  - name: Kafka
+  - name: Docker
+  - name: Kubernetes
+  - name: Terraform
+  - name: Grafana
+  - name: OpenTelemetry
+  - name: GitHub Actions
+
+projects:
+  - name: EricSearch
+    slug: ericsearch
+    tagline: A search engine written from scratch in Rust, from inverted index to ranking.
+    description: >-
+      An end-to-end search engine — crawler, inverted index, BM25 ranking and a
+      query planner — plus benchmarks against Lucene on the same corpus.
+    details: |
+      EricSearch started as a "can I build this in a weekend" bet and turned into
+      a two-year study of information retrieval.
+
+      ## Architecture
+
+      The index is a segmented, memory-mapped inverted index. Segments are
+      immutable once written, which makes concurrent readers trivial and keeps
+      the write path to a single append-only journal.
+
+      ```rust
+      pub struct Segment {
+          terms: Fst<Vec<u8>>,
+          postings: Mmap,
+          doc_lengths: Vec<u32>,
+      }
+      ```
+
+      Queries compile into a small execution plan: term lookups become posting
+      list iterators, then a WAND-style scorer prunes candidates early.
+
+      ## What I learned
+
+      - Memory mapping beats `read(2)` for this workload, but only once the
+        access pattern is sequential per segment.
+      - BM25's parameters matter far less than good tokenisation.
+      - Benchmarks are a feature: without a harness I optimised the wrong thing
+        three separate times.
+    features:
+      - Incremental indexing with crash recovery
+      - BM25 ranking with per-field boosts
+      - Fuzzy matching over a Levenshtein automaton
+      - Query planner with early termination
+      - Benchmarks against Lucene on the same corpus
+    technologies:
+      - name: Rust
+        url: https://www.rust-lang.org
+      - SQLite
+      - name: Tantivy
+        url: https://github.com/quickwit-oss/tantivy
+    images:
+      - src: assets/images/search.svg
+        alt: Query latency graph showing p99 dropping from 240 ms to 18 ms
+        caption: p99 latency after moving to memory-mapped segments.
+    cover:
+      src: assets/images/search.svg
+      alt: EricSearch query latency chart
+    github: https://github.com/eric/ericsearch
+    liveUrl: https://ericsearch.example.com
+    status: maintained
+    role: Creator and maintainer
+    start: 2021-03
+    end: present
+    featured: true
+    tags: [systems, search, rust]
+    metrics:
+      - label: Documents indexed
+        value: 42M
+      - label: p99 query latency
+        value: 18 ms
+      - label: GitHub stars
+        value: 2.1k
+    license: MIT
+
+  - name: Pulse
+    tagline: Zero-config observability for small teams — traces, metrics and logs in one binary.
+    description: A single Go binary that ingests OpenTelemetry data, stores it locally and serves a query UI, designed for teams that do not want to run a full observability stack.
+    details: |
+      Large observability platforms are excellent and completely out of reach for
+      a five-person team. Pulse is the 80% case: one binary, one config file, and
+      a UI that answers "why is this endpoint slow?" in under a minute.
+
+      Storage is a columnar, time-partitioned layout on the local filesystem with
+      an optional S3 backend, so it can run on a single VM and still survive a
+      disk failure.
+    features:
+      - OpenTelemetry OTLP ingestion
+      - Columnar storage with automatic retention
+      - Trace-to-log correlation
+      - Alerting rules in plain YAML
+    technologies: [Go, ClickHouse, Vue, OpenTelemetry]
+    images:
+      - src: assets/images/pulse.svg
+        alt: Pulse trace waterfall view
+    github: https://github.com/eric/pulse
+    liveUrl: https://pulse.example.com
+    status: active
+    role: Creator
+    start: 2023-01
+    featured: true
+    tags: [observability, go, devtools]
+    metrics:
+      - label: Install size
+        value: 34 MB
+      - label: Cold start
+        value: 90 ms
+
+  - name: nom-cli
+    tagline: A parser generator for the command line.
+    description: >-
+      A small tool that turns a grammar file into a command-line parser with help
+      text, completions and error messages that point at the exact token.
+    technologies: [Rust, Clap]
+    github: https://github.com/eric/nom-cli
+    status: archived
+    role: Author
+    start: 2019-06
+    end: 2021-11
+    tags: [cli, rust]
+    license: MIT
+
+  - name: Latency Budget
+    tagline: A spreadsheet-free way to reason about latency budgets in code review.
+    description: A small TypeScript library and GitHub Action that sums the latency budget of a request path from annotations in code.
+    technologies: [TypeScript, GitHub Actions]
+    github: https://github.com/eric/latency-budget
+    status: in-progress
+    start: 2024-09
+    tags: [devtools, typescript]
+
+experience:
+  - company: Nimbus Labs
+    role: Staff engineer, search platform
+    companyUrl: https://nimbus.example.com
+    location: Lisbon, Portugal
+    workMode: hybrid
+    employmentType: full-time
+    start: 2021-04
+    summary: Lead the search platform team (6 engineers) that serves every product surface.
+    description: |
+      Own the search platform used by every product surface: index pipelines,
+      query serving, relevance evaluation and the internal search API.
+    highlights:
+      - Rebuilt the index pipeline as a streaming job, cutting index freshness from 6 hours to 90 seconds.
+      - Introduced a relevance evaluation harness with offline metrics, which is now the gate for every ranking change.
+      - Cut query serving cost 38% by moving cold shards to a cheaper tier.
+    technologies: [Rust, Kafka, PostgreSQL, Kubernetes]
+  - company: Northwind Systems
+    role: Senior backend engineer
+    companyUrl: https://northwind.example.com
+    location: Berlin, Germany
+    workMode: remote
+    employmentType: full-time
+    start: 2018-02
+    end: 2021-03
+    summary: Built the ingestion pipeline that processed 3 billion events a day.
+    highlights:
+      - Designed the multi-tenant ingestion pipeline (Go, Kafka) that has run without a data-loss incident since 2019.
+      - Reduced p99 API latency from 480 ms to 120 ms by reworking caching and connection pooling.
+      - Mentored four engineers through their first on-call rotation.
+    technologies: [Go, Kafka, ClickHouse, Terraform]
+  - company: Meridian Consulting
+    role: Backend engineer
+    location: Porto, Portugal
+    employmentType: full-time
+    start: 2016-07
+    end: 2018-01
+    highlights:
+      - Delivered the payments integration for three client products.
+      - Wrote the internal Python service template still used by new projects.
+    technologies: [Python, Django, PostgreSQL]
+
+education:
+  - institution: Technical University of Munich
+    degree: MSc
+    field: Computer Science
+    location: Munich, Germany
+    institutionUrl: https://www.tum.de
+    start: 2014-10
+    end: 2016-09
+    grade: 1.4
+    summary: Focus on distributed systems and programming languages.
+    highlights:
+      - Thesis on incremental query evaluation in search engines.
+    courses: [Distributed Systems, Compiler Construction, Information Retrieval]
+  - institution: University of Porto
+    degree: BSc
+    field: Software Engineering
+    location: Porto, Portugal
+    start: 2011-09
+    end: 2014-06
+    grade: 17/20
+
+certifications:
+  - name: Certified Kubernetes Administrator
+    issuer: Cloud Native Computing Foundation
+    date: 2022-05
+    expires: 2025-05
+    credentialId: CKA-2205-1043
+    credentialUrl: https://training.linuxfoundation.org/certification/verify
+  - name: AWS Solutions Architect — Professional
+    issuer: Amazon Web Services
+    date: 2021-11
+    expires: 2024-11
+    credentialId: AWS-PSA-88213
+
+awards:
+  - title: Engineering excellence award
+    issuer: Nimbus Labs
+    date: 2023-12
+    description: For the index pipeline rebuild and the relevance evaluation harness.
+
+publications:
+  - title: Incremental query evaluation for memory-mapped inverted indexes
+    publisher: Symposium on Information Retrieval
+    date: 2016-09
+    authors: [Eric Lönnrot, Anna Weber]
+    doi: 10.1145/example.1234567
+    summary: A method for reusing posting list iterators across segment updates, with a 30% reduction in evaluation cost on the ClueWeb12 subset.
+
+testimonials:
+  - quote: Eric is the engineer you want when the system is on fire and nobody understands the index format. He writes down what he learns, which is rarer than it should be.
+    author: Ana Ribeiro
+    role: Director of Engineering
+    company: Nimbus Labs
+  - quote: He turned a vague performance complaint into a measured, boring rollout plan within a week.
+    author: Jonas Keller
+    role: Principal engineer
+    company: Northwind Systems
+
+spokenLanguages:
+  - name: Portuguese
+    proficiency: native
+  - name: English
+    proficiency: fluent
+  - name: German
+    proficiency: professional
+
+sections:
+  - title: Open source
+    id: open-source
+    subtitle: Libraries I maintain in my own time.
+    layout: cards
+    items:
+      - title: segindex
+        subtitle: Segment-based inverted index for Rust
+        description: The indexing core extracted from EricSearch, usable on its own.
+        url: https://github.com/eric/segindex
+        tags: [rust, library]
+        icon: code
+      - title: mmap-fst
+        subtitle: Finite state transducers over memory-mapped files
+        description: A small crate for prefix lookups without loading the whole dictionary.
+        url: https://github.com/eric/mmap-fst
+        tags: [rust, library]
+        icon: layers
+  - title: Speaking
+    id: speaking
+    layout: timeline
+    items:
+      - title: "Designing indexes that survive contact with production"
+        subtitle: RustFest
+        date: 2023-06
+        description: A postmortem-driven talk about the three index bugs that taught me the most.
+        links:
+          slides: https://eric.example.com/talks/rustfest-2023
+          video: https://www.youtube.com/watch?v=example
+      - title: "Latency budgets in practice"
+        subtitle: Lisbon Systems Meetup
+        date: 2022-11
+  - title: Numbers I care about
+    id: numbers
+    layout: stats
+    items:
+      - value: 42M
+        label: Documents indexed
+      - value: 18 ms
+        label: p99 query latency
+      - value: 9 yrs
+        label: Building backends
+      - value: 2.1k
+        label: Stars on EricSearch

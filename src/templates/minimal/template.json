@@ -1,0 +1,19 @@
+{
+  "name": "minimal",
+  "label": "Minimal",
+  "description": "Typographic single-column layout for people who want the writing to do the talking.",
+  "version": "1.0.0",
+  "author": "AutoPortfolio",
+  "license": "MIT",
+  "entry": "page.html",
+  "layout": "layout.html",
+  "project": "project.html",
+  "notFound": "not-found.html",
+  "styles": ["styles.css"],
+  "options": {
+    "heroStyle": "plain",
+    "showAvatar": true,
+    "maxWidth": "normal"
+  },
+  "preview": true
+}

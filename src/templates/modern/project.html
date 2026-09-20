@@ -1,0 +1,121 @@
+<article class="project-detail" id="top">
+  <header class="project-detail__header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="{{nav.brand.href}}">{{profile.name}}</a>
+        <span aria-hidden="true">/</span>
+        <a href="{{url "/#projects"}}">Projects</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{project.name}}</span>
+      </nav>
+
+      <div class="project-detail__intro">
+        <h1 class="project-detail__title">{{project.name}}</h1>
+        {{#if project.taglineHtml}}<p class="project-detail__tagline">{{{project.taglineHtml}}}</p>{{/if}}
+        <ul class="project-detail__meta">
+          {{#if project.rangeLabel}}<li><time>{{project.rangeLabel}}</time></li>{{/if}}
+          {{#if project.role}}<li>{{project.role}}</li>{{/if}}
+          {{#if project.status}}<li><span class="badge badge--{{project.status}}">{{project.status}}</span></li>{{/if}}
+          {{#if project.license}}<li>{{project.license}}</li>{{/if}}
+        </ul>
+
+        {{#if project.secondaryLinks.length}}
+          <div class="project-detail__actions">
+            {{#each project.secondaryLinks}}
+              <a class="btn {{#if @first}}btn--primary{{/if}}" href="{{href}}"{{external href}}>{{icon icon 18}}<span>{{label}}</span></a>
+            {{/each}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </header>
+
+  {{#if detail.hero.src}}
+    <figure class="project-detail__cover">
+      <img src="{{detail.hero.src}}" alt="{{detail.hero.alt}}" loading="eager" decoding="async"{{#if detail.hero.width}} width="{{detail.hero.width}}"{{/if}}{{#if detail.hero.height}} height="{{detail.hero.height}}"{{/if}}>
+      {{#if detail.hero.caption}}<figcaption>{{detail.hero.caption}}</figcaption>{{/if}}
+    </figure>
+  {{/if}}
+
+  <div class="container project-detail__body">
+    {{#if project.detailsHtml}}<div class="prose project-detail__description">{{{project.detailsHtml}}}</div>{{else}}{{#if project.descriptionHtml}}<div class="prose project-detail__description">{{{project.descriptionHtml}}}</div>{{/if}}{{/if}}
+
+    <div class="project-detail__columns">
+      {{#if project.features.length}}
+        <section class="project-panel" aria-labelledby="features-title">
+          <h2 class="project-panel__title" id="features-title">Features</h2>
+          <ul class="bullets">
+            {{#each project.features}}<li>{{{this}}}</li>{{/each}}
+          </ul>
+        </section>
+      {{/if}}
+
+      {{#if project.metrics.length}}
+        <section class="project-panel" aria-labelledby="metrics-title">
+          <h2 class="project-panel__title" id="metrics-title">By the numbers</h2>
+          <ul class="stat-grid">
+            {{#each project.metrics}}
+              <li class="stat"><span class="stat__value">{{value}}</span><span class="stat__label">{{label}}</span></li>
+            {{/each}}
+          </ul>
+        </section>
+      {{/if}}
+
+      {{#if project.technologyItems.length}}
+        <section class="project-panel" aria-labelledby="stack-title">
+          <h2 class="project-panel__title" id="stack-title">Stack</h2>
+          <ul class="chip-list">
+            {{#each project.technologyItems}}<li>{{> components/chip this}}</li>{{/each}}
+          </ul>
+        </section>
+      {{/if}}
+
+      {{#if project.links.length}}
+        <section class="project-panel" aria-labelledby="links-title">
+          <h2 class="project-panel__title" id="links-title">Links</h2>
+          <ul class="link-list">
+            {{#each project.links}}<li>{{> components/link this}}</li>{{/each}}
+          </ul>
+        </section>
+      {{/if}}
+    </div>
+
+    {{#if project.images.length}}
+      <section class="project-gallery" aria-labelledby="gallery-title">
+        <h2 class="project-panel__title" id="gallery-title">Gallery</h2>
+        <ul class="gallery">
+          {{#each project.images}}
+            <li class="gallery__item">
+              <figure>
+                <img src="{{src}}" alt="{{alt}}" loading="lazy" decoding="async"{{#if width}} width="{{width}}"{{/if}}{{#if height}} height="{{height}}"{{/if}}>
+                {{#if caption}}<figcaption>{{caption}}</figcaption>{{/if}}
+              </figure>
+            </li>
+          {{/each}}
+        </ul>
+      </section>
+    {{/if}}
+  </div>
+
+  {{#if detail.related.length}}
+    <section class="section project-detail__related" aria-labelledby="related-title">
+      <div class="container">
+        <h2 class="section__title" id="related-title">Related projects</h2>
+        <div class="project-grid">
+          {{#each detail.related}}{{> components/project-card this}}{{/each}}
+        </div>
+      </div>
+    </section>
+  {{/if}}
+
+  <nav class="project-detail__pager" aria-label="Project navigation">
+    <div class="container project-detail__pager-inner">
+      {{#if detail.previous}}
+        <a class="project-detail__pager-link" href="{{detail.previous.href}}">{{icon "arrow-left" 18}}<span><small>Previous</small>{{detail.previous.name}}</span></a>
+      {{/if}}
+      {{#if detail.next}}
+        <a class="project-detail__pager-link project-detail__pager-link--next" href="{{detail.next.href}}"><span><small>Next</small>{{detail.next.name}}</span>{{icon "arrow-right" 18}}</a>
+      {{/if}}
+    </div>
+  </nav>
+</article>

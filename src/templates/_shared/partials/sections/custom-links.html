@@ -1,0 +1,12 @@
+{{#if html}}<div class="prose section__intro">{{{html}}}</div>{{/if}}
+<ul class="link-grid">
+  {{#each items}}
+    <li class="link-grid__item">
+      <a class="link-grid__link" href="{{href}}"{{external href}}>
+        {{icon default(icon, "link") 20}}
+        <span class="link-grid__title">{{title}}</span>
+        {{#if subtitle}}<span class="link-grid__subtitle">{{subtitle}}</span>{{/if}}
+      </a>
+    </li>
+  {{/each}}
+</ul>

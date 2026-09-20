@@ -1,0 +1,15 @@
+{{#if html}}<div class="prose section__intro">{{{html}}}</div>{{/if}}
+<ul class="gallery">
+  {{#each items}}
+    <li class="gallery__item">
+      {{#if image.src}}
+        <figure>
+          <img src="{{image.src}}" alt="{{image.alt}}" loading="lazy" decoding="async"{{#if image.width}} width="{{image.width}}"{{/if}}{{#if image.height}} height="{{image.height}}"{{/if}}>
+          {{#if image.caption}}<figcaption>{{image.caption}}</figcaption>{{/if}}
+        </figure>
+      {{/if}}
+      {{#if title}}<h3 class="gallery__title">{{#if href}}<a href="{{href}}"{{external href}}>{{title}}</a>{{else}}{{title}}{{/if}}</h3>{{/if}}
+      {{#if descriptionHtml}}<div class="prose">{{{descriptionHtml}}}</div>{{/if}}
+    </li>
+  {{/each}}
+</ul>

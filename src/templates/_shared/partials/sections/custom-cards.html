@@ -1,0 +1,19 @@
+{{#if html}}<div class="prose section__intro">{{{html}}}</div>{{/if}}
+<ul class="card-grid">
+  {{#each items}}
+    <li class="card{{#if image.src}} card--with-media{{/if}}">
+      {{#if image.src}}
+        <div class="card__media"><img src="{{image.src}}" alt="{{image.alt}}" loading="lazy" decoding="async"{{#if image.width}} width="{{image.width}}"{{/if}}{{#if image.height}} height="{{image.height}}"{{/if}}></div>
+      {{/if}}
+      <div class="card__body">
+        {{#if icon}}<span class="card__icon">{{icon icon 20}}</span>{{/if}}
+        <h3 class="card__title">{{#if href}}<a href="{{href}}"{{external href}}>{{title}}</a>{{else}}{{title}}{{/if}}</h3>
+        {{#if subtitle}}<p class="card__subtitle">{{subtitle}}</p>{{/if}}
+        {{#if dateLabel}}<p class="card__meta"><time>{{dateLabel}}</time></p>{{/if}}
+        {{#if descriptionHtml}}<div class="prose card__description">{{{descriptionHtml}}}</div>{{/if}}
+        {{#if tags.length}}<ul class="chip-list chip-list--small">{{#each tags}}<li><span class="chip">{{this}}</span></li>{{/each}}</ul>{{/if}}
+        {{#if links.length}}<ul class="link-list">{{#each links}}<li>{{> components/link this}}</li>{{/each}}</ul>{{/if}}
+      </div>
+    </li>
+  {{/each}}
+</ul>

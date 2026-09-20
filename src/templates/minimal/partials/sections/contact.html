@@ -1,0 +1,15 @@
+<ul class="contact-list">
+  {{#if email}}<li>{{icon "mail" 16}}<a href="{{{mailto}}}">{{email}}</a></li>{{/if}}
+  {{#if phone}}<li>{{icon "phone" 16}}<a href="{{phoneHref}}">{{phone}}</a></li>{{/if}}
+  {{#if location}}<li>{{icon "map-pin" 16}}<span>{{location}}</span></li>{{/if}}
+  {{#if calendarUrl}}<li>{{icon "calendar" 16}}<a href="{{calendarUrl}}"{{external calendarUrl}}>Book a call</a></li>{{/if}}
+  {{#each links}}<li>{{icon icon 16}}<a href="{{href}}"{{external href}}>{{label}}{{#if hrefPretty}} — <span class="muted">{{hrefPretty}}</span>{{/if}}</a></li>{{/each}}
+</ul>
+{{#if hasForm}}
+  <form class="contact-form" method="post" action="{{formAction}}">
+    <label class="contact-form__field"><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
+    <label class="contact-form__field"><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
+    <label class="contact-form__field"><span>Message</span><textarea name="message" rows="5" required></textarea></label>
+    <button class="btn btn--primary" type="submit">Send</button>
+  </form>
+{{/if}}

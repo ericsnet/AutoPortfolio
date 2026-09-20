@@ -1,0 +1,19 @@
+{
+  "name": "developer",
+  "label": "Developer",
+  "description": "Terminal-inspired layout with a monospace type scale, sidebar navigation and dense project cards.",
+  "version": "1.0.0",
+  "author": "AutoPortfolio",
+  "license": "MIT",
+  "entry": "page.html",
+  "layout": "layout.html",
+  "project": "project.html",
+  "notFound": "not-found.html",
+  "styles": ["styles.css"],
+  "options": {
+    "heroStyle": "terminal",
+    "showPrompt": true,
+    "showStats": true
+  },
+  "preview": true
+}

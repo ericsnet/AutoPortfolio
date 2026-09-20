@@ -1,0 +1,12 @@
+<ul class="timeline timeline--plain">
+  {{#each items}}
+    <li class="timeline__item">
+      <div class="timeline__marker" aria-hidden="true">{{icon "award" 18}}</div>
+      <div class="timeline__content">
+        <h3 class="timeline__title">{{#if href}}<a href="{{href}}"{{external href}}>{{title}}</a>{{else}}{{title}}{{/if}}</h3>
+        <p class="timeline__meta">{{#if subtitle}}<span>{{subtitle}}</span>{{/if}}{{#if dateLabel}} · <time{{#if date}} datetime="{{date}}"{{/if}}>{{dateLabel}}</time>{{/if}}</p>
+        {{#if descriptionHtml}}<div class="prose timeline__description">{{{descriptionHtml}}}</div>{{/if}}
+      </div>
+    </li>
+  {{/each}}
+</ul>

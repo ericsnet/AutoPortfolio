@@ -1,0 +1,39 @@
+{{#if categories}}
+  <div class="skill-groups">
+    {{#each groups}}
+      <section class="skill-group" aria-label="{{name}}">
+        {{#unless unnamed}}<h3 class="skill-group__title">{{name}}</h3>{{/unless}}
+        {{#if hasLevels}}
+          <ul class="skill-bars">
+            {{#each items}}
+              <li class="skill-bar">
+                <span class="skill-bar__label">{{name}}</span>
+                <span class="skill-bar__track" role="img" aria-label="{{name}}: {{level}}">
+                  <span class="skill-bar__fill skill-bar__fill--{{level}}" style="--skill-level: {{level}}"></span>
+                </span>
+              </li>
+            {{/each}}
+          </ul>
+        {{else}}
+          <ul class="chip-list">{{#each items}}<li>{{> components/chip this}}</li>{{/each}}</ul>
+        {{/if}}
+      </section>
+    {{/each}}
+  </div>
+{{else if hasLevels}}
+  <ul class="skill-bars">
+    {{#each items}}
+      <li class="skill-bar">
+        <span class="skill-bar__label">{{name}}</span>
+        <span class="skill-bar__track" role="img" aria-label="{{name}}: {{level}}">
+          <span class="skill-bar__fill skill-bar__fill--{{level}}" style="--skill-level: {{level}}"></span>
+        </span>
+        {{#if years}}<span class="skill-bar__years">{{years}} yr</span>{{/if}}
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <ul class="chip-list">
+    {{#each items}}<li>{{> components/chip this}}</li>{{/each}}
+  </ul>
+{{/if}}

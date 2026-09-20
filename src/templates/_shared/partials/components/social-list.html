@@ -1,0 +1,9 @@
+<ul class="social {{class}}" aria-label="{{#if label}}{{label}}{{else}}Social profiles{{/if}}">
+  {{#each items}}
+    <li>
+      <a class="social__link" href="{{href}}"{{external href}} title="{{label}}">
+        {{icon icon 18}}<span class="social__label">{{label}}</span>
+      </a>
+    </li>
+  {{/each}}
+</ul>

@@ -1,0 +1,20 @@
+<div class="about about--modern">
+  {{#if avatar.src}}
+    <div class="about__portrait">
+      {{> components/avatar image=avatar}}
+    </div>
+  {{/if}}
+  <div class="about__content">
+    {{#if html}}<div class="prose about__prose">{{{html}}}</div>{{/if}}
+    {{#if facts.length}}
+      <dl class="facts facts--cards">
+        {{#each facts}}
+          <div class="facts__row">
+            <dt class="facts__label">{{icon icon 18}}<span>{{label}}</span></dt>
+            <dd class="facts__value">{{#if href}}<a href="{{href}}"{{external href}}>{{value}}</a>{{else}}{{value}}{{/if}}</dd>
+          </div>
+        {{/each}}
+      </dl>
+    {{/if}}
+  </div>
+</div>

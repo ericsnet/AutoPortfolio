@@ -1,0 +1,13 @@
+{{#if html}}<div class="prose section__intro">{{{html}}}</div>{{/if}}
+<ul class="bullets bullets--loose">
+  {{#each items}}
+    <li>
+      {{#if icon}}{{icon icon 18}}{{/if}}
+      <span>
+        {{#if href}}<a href="{{href}}"{{external href}}>{{title}}</a>{{else}}{{#if title}}<strong>{{title}}</strong>{{/if}}{{/if}}
+        {{#if subtitle}} — {{subtitle}}{{/if}}
+        {{#if descriptionHtml}} <span class="prose prose--inline">{{{descriptionHtml}}}</span>{{/if}}
+      </span>
+    </li>
+  {{/each}}
+</ul>

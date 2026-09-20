@@ -1,0 +1,18 @@
+{{! Falls back to raw section content so a template that does not override a
+    section still renders something sensible. }}
+{{#if html}}{{{html}}}{{/if}}
+{{#if items.length}}
+  <ul class="card-grid">
+    {{#each items}}
+      <li class="card card--compact">
+        <div class="card__body">
+          {{#if value}}<p class="stat__value">{{value}}</p>{{/if}}
+          {{#if title}}<h3 class="card__title">{{#if href}}<a href="{{href}}"{{external href}}>{{title}}</a>{{else}}{{title}}{{/if}}</h3>{{/if}}
+          {{#if subtitle}}<p class="card__subtitle">{{subtitle}}</p>{{/if}}
+          {{#if dateLabel}}<p class="card__meta"><time>{{dateLabel}}</time></p>{{/if}}
+          {{#if descriptionHtml}}<div class="prose card__description">{{{descriptionHtml}}}</div>{{/if}}
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+{{/if}}

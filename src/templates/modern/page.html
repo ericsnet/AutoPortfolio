@@ -1,0 +1,19 @@
+{{> hero}}
+
+{{#each sections}}
+  <section class="section section--{{id}}" id="{{anchor}}" aria-labelledby="{{anchor}}-title" data-reveal>
+    <div class="container">
+      <header class="section__header">
+        <h2 class="section__title" id="{{anchor}}-title">
+          {{#if number}}<span class="section__number" aria-hidden="true">{{number}}</span>{{/if}}
+          {{#if icon}}<span class="section__icon" aria-hidden="true">{{icon icon 22}}</span>{{/if}}
+          <span>{{title}}</span>
+        </h2>
+        {{#if subtitle}}<p class="section__subtitle">{{subtitle}}</p>{{/if}}
+      </header>
+      <div class="section__body">
+        {{include partials this}}
+      </div>
+    </div>
+  </section>
+{{/each}}

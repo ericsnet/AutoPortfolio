@@ -1,0 +1,18 @@
+{{#if html}}<div class="prose section__intro">{{{html}}}</div>{{/if}}
+<ol class="timeline">
+  {{#each items}}
+    <li class="timeline__item">
+      <div class="timeline__marker" aria-hidden="true">{{icon default(icon, "clock") 18}}</div>
+      <div class="timeline__content">
+        <header class="timeline__header">
+          <h3 class="timeline__title">{{#if href}}<a href="{{href}}"{{external href}}>{{title}}</a>{{else}}{{title}}{{/if}}</h3>
+          {{#if subtitle}}<p class="timeline__subtitle">{{subtitle}}</p>{{/if}}
+          {{#if dateLabel}}<p class="timeline__meta"><time>{{dateLabel}}</time></p>{{/if}}
+        </header>
+        {{#if descriptionHtml}}<div class="prose timeline__description">{{{descriptionHtml}}}</div>{{/if}}
+        {{#if tags.length}}<ul class="chip-list chip-list--small">{{#each tags}}<li><span class="chip">{{this}}</span></li>{{/each}}</ul>{{/if}}
+        {{#if links.length}}<ul class="link-list">{{#each links}}<li>{{> components/link this}}</li>{{/each}}</ul>{{/if}}
+      </div>
+    </li>
+  {{/each}}
+</ol>

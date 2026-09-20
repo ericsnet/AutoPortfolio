@@ -1,0 +1,14 @@
+<ul class="publication-list">
+  {{#each items}}
+    <li class="publication">
+      <h3 class="publication__title">{{#if href}}<a href="{{href}}"{{external href}}>{{title}}{{icon "external-link" 14}}</a>{{else}}{{title}}{{/if}}</h3>
+      <p class="publication__meta">
+        {{#if authorsLabel}}{{authorsLabel}}. {{/if}}
+        {{#if subtitle}}<em>{{subtitle}}</em>{{/if}}
+        {{#if dateLabel}} · <time{{#if date}} datetime="{{date}}"{{/if}}>{{dateLabel}}</time>{{/if}}
+      </p>
+      {{#if summaryHtml}}<p class="publication__summary">{{{summaryHtml}}}</p>{{/if}}
+      {{#if doi}}<p class="publication__doi">DOI: <a href="https://doi.org/{{doi}}" rel="noopener noreferrer">{{doi}}</a></p>{{/if}}
+    </li>
+  {{/each}}
+</ul>

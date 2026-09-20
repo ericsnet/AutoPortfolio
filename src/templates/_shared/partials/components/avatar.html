@@ -1,0 +1,12 @@
+{{#if image.src}}
+  <img
+    class="avatar {{class}}"
+    src="{{image.src}}"
+    alt="{{image.alt}}"
+    {{#if image.width}}width="{{image.width}}"{{/if}}
+    {{#if image.height}}height="{{image.height}}"{{/if}}
+    loading="{{image.loading}}"
+    decoding="async">
+{{else}}
+  <span class="avatar avatar--monogram {{class}}" aria-hidden="true">{{#if monogram}}{{monogram}}{{else}}?{{/if}}</span>
+{{/if}}

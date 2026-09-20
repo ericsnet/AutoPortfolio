@@ -1,0 +1,11 @@
+<footer class="page-footer">
+  <div class="container container--narrow page-footer__inner">
+    <p class="page-footer__copy">© {{site.year}} {{profile.name}}</p>
+    {{#if social.length}}
+      <ul class="page-footer__links">
+        {{#each social}}<li><a href="{{href}}"{{external href}}>{{label}}</a></li>{{/each}}
+      </ul>
+    {{/if}}
+    <p class="page-footer__built"><a href="{{site.generator.url}}" rel="noopener noreferrer">AutoPortfolio</a></p>
+  </div>
+</footer>

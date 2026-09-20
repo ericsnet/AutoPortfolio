@@ -1,0 +1,9 @@
+{{#if html}}<div class="prose section__intro">{{{html}}}</div>{{/if}}
+<ul class="stat-grid">
+  {{#each items}}
+    <li class="stat">
+      <span class="stat__value">{{default value title}}</span>
+      <span class="stat__label">{{default label subtitle}}</span>
+    </li>
+  {{/each}}
+</ul>

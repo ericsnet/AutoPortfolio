@@ -1,0 +1,24 @@
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__identity">
+      <p class="site-footer__name">{{profile.name}}</p>
+      {{#if profile.headline}}<p class="site-footer__headline">{{profile.headline}}</p>{{/if}}
+    </div>
+
+    {{#if social.length}}
+      <nav class="site-footer__social" aria-label="Social profiles">
+        <ul class="social">
+          {{#each social}}
+            <li><a class="social__link" href="{{href}}"{{external href}}>{{icon icon 18}}<span class="social__label">{{label}}</span></a></li>
+          {{/each}}
+        </ul>
+      </nav>
+    {{/if}}
+
+    <div class="site-footer__meta">
+      <p class="site-footer__copy">© {{site.year}} {{profile.name}}</p>
+      <p class="site-footer__built">Built with <a href="{{site.generator.url}}" rel="noopener noreferrer">AutoPortfolio</a> v{{site.generator.version}}</p>
+      <a class="site-footer__top" href="#top">{{icon "arrow-up" 16}}<span>Back to top</span></a>
+    </div>
+  </div>
+</footer>

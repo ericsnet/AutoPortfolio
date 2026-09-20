@@ -1,0 +1,61 @@
+{
+  "name": "autoportfolio",
+  "version": "1.0.0",
+  "description": "Content-first portfolio generator: turn one structured file into a fast, accessible, responsive portfolio website.",
+  "keywords": [
+    "portfolio",
+    "portfolio-generator",
+    "static-site-generator",
+    "resume",
+    "personal-website",
+    "cli",
+    "developer-tools"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "bin": {
+    "autoportfolio": "bin/autoportfolio.js"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./generator": "./src/generator/generator.js",
+    "./templates": "./src/templates/registry.js",
+    "./themes": "./src/theme/presets.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "bin",
+    "src",
+    "docs",
+    "examples",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "test:watch": "node --test --watch",
+    "test:coverage": "node --test --experimental-test-coverage",
+    "typecheck": "tsc --noEmit",
+    "build:example": "node bin/autoportfolio.js build --config examples/developer/portfolio.yaml --clean",
+    "dev:example": "node bin/autoportfolio.js dev --config examples/developer/portfolio.yaml",
+    "demo": "node scripts/demo.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "yaml": "^2.6.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pickeric/AutoPortfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Pickeric/AutoPortfolio/issues"
+  },
+  "homepage": "https://github.com/Pickeric/AutoPortfolio#readme"
+}
