@@ -66,7 +66,7 @@ export async function listTemplates(options = {}) {
 
   for (const root of dirs) {
     if (!(await isDirectory(root))) continue;
-    const entries = await walk(root, { maxDepth: 0 });
+    const entries = await walk(root, { maxDepth: 0, includeDirectories: true });
     for (const entry of entries) {
       if (!entry.directory) continue;
       const manifestPath = path.join(entry.path, 'template.json');

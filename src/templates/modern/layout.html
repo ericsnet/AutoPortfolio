@@ -8,6 +8,7 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="{{site.themeColor}}">
   {{#if assets.favicon}}<link rel="icon" href="{{assets.favicon}}"{{#if assets.faviconType}} type="{{assets.faviconType}}"{{/if}}>{{/if}}
+  {{#if assets.manifest}}<link rel="manifest" href="{{assets.manifest}}">{{/if}}
   {{#if theme.fontUrl}}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{{theme.fontUrl}}">{{/if}}
   {{#each assets.preload}}<link rel="preload" as="{{as}}" href="{{href}}"{{#if type}} type="{{type}}"{{/if}}{{#if crossorigin}} crossorigin{{/if}}>{{/each}}
   {{#each assets.stylesheets}}<link rel="stylesheet" href="{{this}}">{{/each}}

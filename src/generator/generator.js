@@ -131,6 +131,8 @@ export async function generateSite(project, options = {}) {
     stylesheets: [cssFile],
     scripts: [jsFile],
     favicon: favicon ? favicon.to : generatedFavicon ? 'favicon.svg' : null,
+    // Written further down; templates link it from the head.
+    manifest: 'manifest.webmanifest',
     preload: buildPreloads(data),
   };
 
@@ -188,6 +190,7 @@ export async function generateSite(project, options = {}) {
     stylesheets: assets.stylesheets,
     scripts: assets.scripts,
     favicon: assets.favicon,
+    manifest: assets.manifest,
     preload: assets.preload,
     templateOptions: template.manifest.options ?? {},
     timestamp: new Date().toISOString(),

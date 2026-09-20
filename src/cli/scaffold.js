@@ -271,7 +271,8 @@ technologies:
 projects:
   - name: Project name
     tagline: One line that makes someone want to click.
-    description: Two or three sentences: what it does, who uses it, what you did.
+    description: >-
+      Two or three sentences — what it does, who uses it, and what you did on it.
     details: |
       A longer write-up shown on the project's own page. Markdown works here:
       headings, lists, code blocks and images.

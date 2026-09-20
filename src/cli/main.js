@@ -642,10 +642,12 @@ async function commandList(command, argv, logger) {
       }
       logger.info(`${logger.paint('bold', preset.label ?? name)}${preset.description ? ` — ${preset.description}` : ''}`);
       logger.table([
-        ['accent', preset.accent ?? '—'],
-        ['background', preset.light?.background ?? '—'],
-        ['dark background', preset.dark?.background ?? '—'],
+        ['accent', preset.colors.light.accent],
+        ['accent (dark)', preset.colors.dark.accent],
+        ['background', preset.colors.light.background],
+        ['background (dark)', preset.colors.dark.background],
         ['radius', preset.radius ?? 'md'],
+        ['spacing', preset.spacing ?? 'comfortable'],
         ['typography', [preset.typography?.heading, preset.typography?.body].filter(Boolean).join(' / ') || '—'],
       ]);
       return EXIT_OK;
@@ -653,7 +655,7 @@ async function commandList(command, argv, logger) {
 
     const rows = THEME_PRESET_NAMES.map((themeName) => [
       themeName,
-      `${THEME_PRESETS[themeName].description ?? ''} ${logger.paint('gray', `accent ${THEME_PRESETS[themeName].accent ?? '—'}`)}`.trim(),
+      `${THEME_PRESETS[themeName].description ?? ''} ${logger.paint('gray', `accent ${THEME_PRESETS[themeName].colors.light.accent}`)}`.trim(),
     ]);
     if (options.json) {
       logger.info(JSON.stringify(THEME_PRESETS, null, 2));

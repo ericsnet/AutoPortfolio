@@ -36,12 +36,22 @@ import { GENERATOR, VERSION } from '../version.js';
  * @property {any} config
  * @property {any} theme
  * @property {PageDescriptor} page
- * @property {object} [build]
- * @property {Set<string>} [build.pages]       Every file that will exist.
- * @property {Record<string, string>} [build.assets] Logical asset name -> output file.
- * @property {SafeHtml} [build.headHtml]
- * @property {SafeHtml} [build.bodyHtml]
- * @property {string} [build.copyright]
+ * @property {BuildContext} [build]
+ *
+ * @typedef {object} BuildContext
+ * @property {Set<string>} [pages]              Every file that will exist.
+ * @property {Record<string, string>} [assets]  Logical asset name -> output file.
+ * @property {SafeHtml} [headHtml]
+ * @property {SafeHtml} [bodyHtml]
+ * @property {string} [copyright]
+ * @property {string[]} [stylesheets]           Generated stylesheet output names.
+ * @property {string[]} [scripts]               Generated script output names.
+ * @property {string|null} [favicon]            Favicon output name, when there is one.
+ * @property {string|null} [manifest]           Web manifest output name.
+ * @property {Array<string|{href: string, as?: string, type?: string, crossorigin?: boolean}>} [preload]
+ * @property {Record<string, unknown>} [templateOptions]
+ * @property {any} [analytics]
+ * @property {string} [timestamp]               Build time, ISO 8601.
  */
 
 /**
@@ -215,6 +225,7 @@ export function buildViewModel(options) {
       scripts: (build.scripts ?? []).map((file) => formatter.asset(file)),
       favicon: build.favicon ? formatter.asset(build.favicon) : undefined,
       faviconType: build.favicon ? mimeFor(build.favicon) : undefined,
+      manifest: build.manifest ? formatter.asset(build.manifest) : undefined,
       preload: (build.preload ?? []).map((entry) =>
         typeof entry === 'string' ? { href: formatter.asset(entry) } : { ...entry, href: formatter.asset(entry.href) },
       ),
