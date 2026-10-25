@@ -1,0 +1,20 @@
+<footer class="term-footer">
+  <div class="container term-footer__inner">
+    <div class="term-footer__col">
+      <p class="term-footer__line"><span class="term-prompt" aria-hidden="true">$</span> contact --email</p>
+      <p class="term-footer__value">{{#if contact.email}}<a href="{{{mailto contact.email}}}">{{contact.email}}</a>{{else}}<a href="#contact">see the contact section</a>{{/if}}</p>
+    </div>
+    {{#if social.length}}
+      <div class="term-footer__col">
+        <p class="term-footer__line"><span class="term-prompt" aria-hidden="true">$</span> social --list</p>
+        <ul class="term-footer__links">
+          {{#each social}}<li><a href="{{href}}"{{external href}}>{{label}}</a></li>{{/each}}
+        </ul>
+      </div>
+    {{/if}}
+    <div class="term-footer__col term-footer__col--meta">
+      <p class="term-footer__line"><span class="term-prompt" aria-hidden="true">$</span> built-with</p>
+      <p class="term-footer__value"><a href="{{site.generator.url}}" rel="noopener noreferrer">AutoPortfolio</a> v{{site.generator.version}} · © {{site.year}} {{profile.name}}</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,28 @@
+<header class="term-bar" data-nav>
+  <div class="container term-bar__inner">
+    <a class="term-bar__brand" href="{{nav.brand.href}}">
+      <span class="term-bar__prompt" aria-hidden="true">~/</span>{{profile.name}}
+    </a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="term-nav" aria-label="Toggle navigation" hidden>
+      {{icon "menu" 20}}
+    </button>
+    {{#if nav.enabled}}
+      <nav class="term-nav" id="term-nav" data-nav-menu data-open="false" aria-label="Sections">
+        <ul class="term-nav__list">
+          {{#each nav.items}}
+            <li><a class="term-nav__link" href="{{anchor}}"><span class="term-nav__hash" aria-hidden="true">#</span>{{label}}</a></li>
+          {{/each}}
+        </ul>
+      </nav>
+    {{/if}}
+    <div class="term-bar__actions">
+      {{#if site.url}}<span class="term-bar__host">{{prettyUrl site.url}}</span>{{/if}}
+      {{#if theme.showsToggle}}
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle colour theme">
+          <span data-theme-icon="light">{{icon "sun" 18}}</span>
+          <span data-theme-icon="dark" hidden>{{icon "moon" 18}}</span>
+        </button>
+      {{/if}}
+    </div>
+  </div>
+</header>

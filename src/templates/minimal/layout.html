@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="{{site.language}}"{{#if theme.mode}} data-mode="{{theme.mode}}"{{/if}}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{page.title}}</title>
+  <meta name="description" content="{{page.description}}">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="{{site.themeColor}}">
+  {{#if assets.favicon}}<link rel="icon" href="{{assets.favicon}}"{{#if assets.faviconType}} type="{{assets.faviconType}}"{{/if}}>{{/if}}
+  {{#if assets.manifest}}<link rel="manifest" href="{{assets.manifest}}">{{/if}}
+  {{#if theme.fontUrl}}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="{{theme.fontUrl}}">{{/if}}
+  {{#each assets.preload}}<link rel="preload" as="{{as}}" href="{{href}}"{{#if type}} type="{{type}}"{{/if}}>{{/each}}
+  {{#each assets.stylesheets}}<link rel="stylesheet" href="{{this}}">{{/each}}
+  {{{assets.headScript}}}
+  {{{head}}}
+</head>
+<body class="no-js theme-minimal">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="page-header" data-nav>
+    <div class="container container--narrow page-header__inner">
+      <a class="page-header__name" href="{{nav.brand.href}}">{{profile.name}}</a>
+      <div class="page-header__actions">
+        {{#if nav.enabled}}
+          <nav class="page-nav" aria-label="Sections">
+            <ul class="page-nav__list">
+              {{#each nav.primary}}
+                <li><a class="page-nav__link" href="{{anchor}}">{{label}}</a></li>
+              {{/each}}
+            </ul>
+          </nav>
+        {{/if}}
+        {{#if theme.showsToggle}}
+          <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle colour theme">
+            <span data-theme-icon="light">{{icon "sun" 18}}</span>
+            <span data-theme-icon="dark" hidden>{{icon "moon" 18}}</span>
+          </button>
+        {{/if}}
+      </div>
+    </div>
+  </header>
+  <main id="main" class="container container--narrow">
+    {{{body}}}
+  </main>
+  {{> footer}}
+  {{#each assets.scripts}}<script src="{{this}}" defer></script>{{/each}}
+  {{{bodyEnd}}}
+</body>
+</html>

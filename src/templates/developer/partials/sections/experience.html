@@ -1,0 +1,19 @@
+<ol class="term-log">
+  {{#each items}}
+    <li class="term-log__item">
+      <p class="term-log__line">
+        <span class="term-log__date">{{#if startLabel}}{{startLabel}}{{else}}—{{/if}}</span>
+        <span class="term-log__arrow" aria-hidden="true">→</span>
+        <span class="term-log__title">{{title}}</span>
+        {{#if subtitle}}<span class="term-log__at">@ {{#if subtitleHref}}<a href="{{subtitleHref}}"{{external subtitleHref}}>{{subtitle}}</a>{{else}}{{subtitle}}{{/if}}</span>{{/if}}
+      </p>
+      <div class="term-log__detail">
+        {{#if meta.length}}<p class="term-log__meta">{{join meta " · "}}</p>{{/if}}
+        {{#if summaryHtml}}<p class="term-log__summary">{{{summaryHtml}}}</p>{{/if}}
+        {{#if descriptionHtml}}<div class="prose term-log__description">{{{descriptionHtml}}}</div>{{/if}}
+        {{#if highlightHtml.length}}<ul class="bullets">{{#each highlightHtml}}<li>{{{this}}}</li>{{/each}}</ul>{{/if}}
+        {{#if technologies.length}}<ul class="chip-list chip-list--small">{{#each technologies}}<li>{{> components/chip this}}</li>{{/each}}</ul>{{/if}}
+      </div>
+    </li>
+  {{/each}}
+</ol>

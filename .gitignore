@@ -1,0 +1,16 @@
+# Build output
+dist/
+build/
+out/
+*.autoportfolio.zip
+
+# Dependencies
+node_modules/
+
+# Tooling
+.DS_Store
+.idea/
+.vscode/
+*.log
+coverage/
+.arena/

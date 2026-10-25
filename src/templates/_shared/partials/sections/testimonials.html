@@ -1,0 +1,12 @@
+<ul class="quote-grid">
+  {{#each items}}
+    <li class="quote">
+      <blockquote class="quote__text prose">{{{quoteHtml}}}</blockquote>
+      <figcaption class="quote__author">
+        {{#if avatar.src}}<img class="quote__avatar" src="{{avatar.src}}" alt="" loading="lazy" decoding="async" width="40" height="40">{{/if}}
+        <span class="quote__name">{{author}}</span>
+        {{#if authorLabel}}<span class="quote__role">{{authorLabel}}</span>{{/if}}
+      </figcaption>
+    </li>
+  {{/each}}
+</ul>

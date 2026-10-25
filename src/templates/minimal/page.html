@@ -1,0 +1,26 @@
+<section class="intro" id="top">
+  {{#if profile.avatar.src}}
+    <img class="intro__avatar" src="{{profile.avatar.src}}" alt="{{profile.avatar.alt}}" {{#if profile.avatar.width}}width="{{profile.avatar.width}}"{{/if}}{{#if profile.avatar.height}}height="{{profile.avatar.height}}"{{/if}} loading="eager" decoding="async" fetchpriority="high">
+  {{/if}}
+  <h1 class="intro__name">{{profile.name}}</h1>
+  {{#if hero.headlineHtml}}<p class="intro__headline">{{{hero.headlineHtml}}}</p>{{/if}}
+  {{#if hero.shortBioHtml}}<p class="intro__bio">{{{hero.shortBioHtml}}}</p>{{/if}}
+  {{#if hero.primaryLinks.length}}
+    <ul class="intro__links">
+      {{#each hero.primaryLinks}}
+        <li><a href="{{href}}"{{external href}}>{{icon icon 16}}<span>{{label}}</span></a></li>
+      {{/each}}
+      {{#if profile.location}}<li class="intro__location">{{icon "map-pin" 16}}<span>{{profile.location}}</span></li>{{/if}}
+    </ul>
+  {{/if}}
+</section>
+
+{{#each sections}}
+  <section class="block block--{{id}}" id="{{anchor}}" aria-labelledby="{{anchor}}-title">
+    <h2 class="block__title" id="{{anchor}}-title">{{title}}</h2>
+    {{#if subtitle}}<p class="block__subtitle">{{subtitle}}</p>{{/if}}
+    <div class="block__body">
+      {{include partials this}}
+    </div>
+  </section>
+{{/each}}

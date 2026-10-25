@@ -1,0 +1,68 @@
+<section class="term-hero" id="top">
+  <div class="container term-hero__inner">
+    <div class="term-hero__window" role="group" aria-label="Introduction">
+      <div class="term-hero__titlebar" aria-hidden="true">
+        <span class="term-hero__dot"></span><span class="term-hero__dot"></span><span class="term-hero__dot"></span>
+        <span class="term-hero__case">{{profile.name}} — portfolio</span>
+      </div>
+      <div class="term-hero__body">
+        <p class="term-hero__line"><span class="term-prompt">$</span> whoami</p>
+        <h1 class="term-hero__title">{{profile.name}}</h1>
+        {{#if hero.headlineHtml}}<p class="term-hero__headline">{{{hero.headlineHtml}}}</p>{{/if}}
+        {{#if hero.shortBioHtml}}<p class="term-hero__bio">{{{hero.shortBioHtml}}}</p>{{/if}}
+        <p class="term-hero__line"><span class="term-prompt">$</span> cat contact.json</p>
+        <ul class="term-hero__contact">
+          {{#if profile.location}}<li><span class="term-key">"location"</span>: "{{profile.location}}"</li>{{/if}}
+          {{#if contact.email}}<li><span class="term-key">"email"</span>: "<a href="{{{mailto contact.email}}}">{{contact.email}}</a>"</li>{{/if}}
+          {{#if profile.availability}}<li><span class="term-key">"status"</span>: "{{profile.availability}}"</li>{{/if}}
+        </ul>
+        {{#if hero.primaryLinks.length}}
+          <div class="term-hero__actions">
+            {{#each hero.primaryLinks}}
+              <a class="term-btn{{#if @first}} term-btn--primary{{/if}}" href="{{href}}"{{external href}}>{{icon icon 16}}<span>{{label}}</span></a>
+            {{/each}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+
+    <aside class="term-hero__aside">
+      {{#if profile.avatar.src}}
+        <img class="term-hero__avatar" src="{{profile.avatar.src}}" alt="{{profile.avatar.alt}}" {{#if profile.avatar.width}}width="{{profile.avatar.width}}"{{/if}}{{#if profile.avatar.height}}height="{{profile.avatar.height}}"{{/if}} loading="eager" decoding="async" fetchpriority="high">
+      {{/if}}
+      {{#if hero.highlights.length}}
+        <ul class="term-stats">
+          {{#each hero.highlights}}
+            <li class="term-stat"><span class="term-stat__value">{{value}}</span><span class="term-stat__label">{{label}}</span></li>
+          {{/each}}
+        </ul>
+      {{/if}}
+      {{#if technologies.length}}
+        <div class="term-aside-block">
+          <p class="term-aside-block__title">stack[]</p>
+          <ul class="chip-list chip-list--small">
+            {{#each technologies}}<li>{{> components/chip this}}</li>{{/each}}
+          </ul>
+        </div>
+      {{/if}}
+    </aside>
+  </div>
+</section>
+
+{{#each sections}}
+  <section class="section section--{{id}}" id="{{anchor}}" aria-labelledby="{{anchor}}-title" data-reveal>
+    <div class="container">
+      <header class="section__header">
+        <h2 class="section__title" id="{{anchor}}-title">
+          {{#if number}}<span class="section__number" aria-hidden="true">{{number}}</span>{{/if}}
+          <span class="section__marker" aria-hidden="true">##</span>
+          <span>{{title}}</span>
+        </h2>
+        {{#if subtitle}}<p class="section__subtitle">{{subtitle}}</p>{{/if}}
+      </header>
+      <div class="section__body">
+        {{include partials this}}
+      </div>
+    </div>
+  </section>
+{{/each}}

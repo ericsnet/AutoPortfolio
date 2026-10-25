@@ -1,0 +1,29 @@
+<div class="contact contact--modern">
+  <div class="contact__panel">
+    {{#if messageHtml}}<div class="prose contact__message">{{{messageHtml}}}</div>{{/if}}
+    <ul class="contact__list">
+      {{#if email}}<li class="contact__item">{{icon "mail" 18}}<a class="contact__link" href="{{{mailto}}}">{{email}}</a></li>{{/if}}
+      {{#if phone}}<li class="contact__item">{{icon "phone" 18}}<a class="contact__link" href="{{phoneHref}}">{{phone}}</a></li>{{/if}}
+      {{#if location}}<li class="contact__item">{{icon "map-pin" 18}}<span>{{location}}</span></li>{{/if}}
+      {{#if calendarUrl}}<li class="contact__item">{{icon "calendar" 18}}<a class="contact__link" href="{{calendarUrl}}"{{external calendarUrl}}>Book a call</a></li>{{/if}}
+      {{#if resume}}<li class="contact__item">{{icon "file-text" 18}}<a class="contact__link" href="{{resume}}"{{external resume}}>Résumé</a></li>{{/if}}
+    </ul>
+  </div>
+  {{#if links.length}}
+    <div class="contact__panel">
+      <h3 class="contact__panel-title">Find me online</h3>
+      {{> components/social-list items=links label="Profiles"}}
+    </div>
+  {{/if}}
+</div>
+{{#if hasForm}}
+  <form class="contact-form" method="post" action="{{formAction}}">
+    <h3 class="contact-form__title">Send a message</h3>
+    <div class="contact-form__row">
+      <label class="contact-form__field"><span>Name</span><input type="text" name="name" autocomplete="name" required></label>
+      <label class="contact-form__field"><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
+    </div>
+    <label class="contact-form__field"><span>Message</span><textarea name="message" rows="5" required></textarea></label>
+    <button class="btn btn--primary" type="submit">Send</button>
+  </form>
+{{/if}}

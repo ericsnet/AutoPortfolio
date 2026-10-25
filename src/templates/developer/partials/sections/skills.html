@@ -1,0 +1,8 @@
+<div class="term-skills">
+  {{#each groups}}
+    <section class="term-panel" aria-label="{{name}}">
+      {{#unless unnamed}}<h3 class="term-panel__title">{{name}}</h3>{{/unless}}
+      <ul class="chip-list chip-list--small">{{#each items}}<li>{{> components/chip this}}</li>{{/each}}</ul>
+    </section>
+  {{/each}}
+</div>

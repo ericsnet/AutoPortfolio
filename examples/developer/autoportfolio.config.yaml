@@ -1,0 +1,48 @@
+# AutoPortfolio example project — a full developer portfolio.
+# Run `npx autoportfolio dev` in this directory to preview it.
+
+data: portfolio.yaml
+template: developer
+
+theme:
+  preset: terminal
+  mode: auto
+  accent: "#4ade80"
+  radius: sm
+  spacing: comfortable
+  typography:
+    heading: JetBrains Mono
+    body: Inter
+    mono: JetBrains Mono
+
+sections:
+  order: [about, skills, technologies, projects, experience, education, certifications, contact]
+  labels:
+    technologies: "Tools I reach for"
+  nav: true
+  navStyle: sticky
+  numbered: true
+
+site:
+  baseUrl: https://eric.example.com
+  trailingSlash: true
+
+assets:
+  directory: assets
+
+build:
+  output: dist
+  minify: true
+  prettyUrls: true
+  projectPages: true
+  sitemap: true
+  robots: true
+  rss: true
+
+content:
+  markdown: true
+  emailObfuscation: entities
+  dateFormat: auto
+
+serve:
+  port: 4173

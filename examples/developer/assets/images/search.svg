@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Query latency chart">
+  <rect width="800" height="420" fill="#0b1120"/>
+  <g stroke="#25314c" stroke-width="1">
+    <line x1="80" y1="340" x2="760" y2="340"/>
+    <line x1="80" y1="240" x2="760" y2="240"/>
+    <line x1="80" y1="140" x2="760" y2="140"/>
+  </g>
+  <polyline fill="none" stroke="#4ade80" stroke-width="4" points="80,120 180,150 280,180 380,250 480,300 580,320 680,330 760,332"/>
+  <polyline fill="none" stroke="#f87171" stroke-width="3" stroke-dasharray="8 6" points="80,80 180,90 280,95 380,100 480,105 580,108 680,110 760,112"/>
+  <text x="96" y="60" fill="#e8edf7" font-family="monospace" font-size="20">p99 latency (ms)</text>
+  <text x="96" y="370" fill="#9aa8bf" font-family="monospace" font-size="16">segmented index, memory mapped</text>
+</svg>

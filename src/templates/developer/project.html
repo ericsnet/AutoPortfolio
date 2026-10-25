@@ -1,0 +1,100 @@
+<article class="term-entry" id="top">
+  <div class="container">
+    <nav class="term-entry__path" aria-label="Breadcrumb">
+      <a href="{{nav.brand.href}}">~</a>/<a href="{{url "/#projects"}}">projects</a>/<span aria-current="page">{{project.slug}}</span>
+    </nav>
+
+    <header class="term-entry__header">
+      <h1 class="term-entry__title">{{project.name}}</h1>
+      {{#if project.taglineHtml}}<p class="term-entry__tagline">{{{project.taglineHtml}}}</p>{{/if}}
+      <ul class="term-entry__meta">
+        {{#if project.rangeLabel}}<li><span class="term-key">period</span> <time>{{project.rangeLabel}}</time></li>{{/if}}
+        {{#if project.role}}<li><span class="term-key">role</span> {{project.role}}</li>{{/if}}
+        {{#if project.status}}<li><span class="term-key">status</span> {{project.status}}</li>{{/if}}
+        {{#if project.license}}<li><span class="term-key">license</span> {{project.license}}</li>{{/if}}
+      </ul>
+      {{#if project.secondaryLinks.length}}
+        <div class="term-entry__actions">
+          {{#each project.secondaryLinks}}
+            <a class="term-btn{{#if @first}} term-btn--primary{{/if}}" href="{{href}}"{{external href}}>{{icon icon 16}}<span>{{label}}</span></a>
+          {{/each}}
+        </div>
+      {{/if}}
+    </header>
+
+    {{#if detail.hero.src}}
+      <figure class="term-entry__cover">
+        <img src="{{detail.hero.src}}" alt="{{detail.hero.alt}}" loading="eager" decoding="async"{{#if detail.hero.width}} width="{{detail.hero.width}}"{{/if}}{{#if detail.hero.height}} height="{{detail.hero.height}}"{{/if}}>
+        {{#if detail.hero.caption}}<figcaption>{{detail.hero.caption}}</figcaption>{{/if}}
+      </figure>
+    {{/if}}
+
+    <div class="term-entry__grid">
+      <div class="term-entry__main">
+        {{#if project.detailsHtml}}<div class="prose">{{{project.detailsHtml}}}</div>{{else}}{{#if project.descriptionHtml}}<div class="prose">{{{project.descriptionHtml}}}</div>{{/if}}{{/if}}
+
+        {{#if project.features.length}}
+          <section class="term-panel" aria-labelledby="features-title">
+            <h2 class="term-panel__title" id="features-title">features</h2>
+            <ul class="bullets">{{#each project.features}}<li>{{{this}}}</li>{{/each}}</ul>
+          </section>
+        {{/if}}
+
+        {{#if project.images.length}}
+          <section class="term-panel" aria-labelledby="gallery-title">
+            <h2 class="term-panel__title" id="gallery-title">screenshots</h2>
+            <ul class="gallery">
+              {{#each project.images}}
+                <li class="gallery__item">
+                  <figure>
+                    <img src="{{src}}" alt="{{alt}}" loading="lazy" decoding="async"{{#if width}} width="{{width}}"{{/if}}{{#if height}} height="{{height}}"{{/if}}>
+                    {{#if caption}}<figcaption>{{caption}}</figcaption>{{/if}}
+                  </figure>
+                </li>
+              {{/each}}
+            </ul>
+          </section>
+        {{/if}}
+      </div>
+
+      <aside class="term-entry__sidebar">
+        {{#if project.technologyItems.length}}
+          <section class="term-panel" aria-labelledby="stack-title">
+            <h2 class="term-panel__title" id="stack-title">stack[]</h2>
+            <ul class="chip-list chip-list--small">{{#each project.technologyItems}}<li>{{> components/chip this}}</li>{{/each}}</ul>
+          </section>
+        {{/if}}
+
+        {{#if project.metrics.length}}
+          <section class="term-panel" aria-labelledby="metrics-title">
+            <h2 class="term-panel__title" id="metrics-title">metrics</h2>
+            <ul class="term-stats term-stats--inline">
+              {{#each project.metrics}}<li class="term-stat"><span class="term-stat__value">{{value}}</span><span class="term-stat__label">{{label}}</span></li>{{/each}}
+            </ul>
+          </section>
+        {{/if}}
+
+        {{#if project.links.length}}
+          <section class="term-panel" aria-labelledby="links-title">
+            <h2 class="term-panel__title" id="links-title">links[]</h2>
+            <ul class="term-links">{{#each project.links}}<li>{{> components/link this}}</li>{{/each}}</ul>
+          </section>
+        {{/if}}
+      </aside>
+    </div>
+
+    {{#if detail.related.length}}
+      <section class="term-panel term-panel--wide" aria-labelledby="related-title">
+        <h2 class="term-panel__title" id="related-title">related</h2>
+        <div class="project-grid">
+          {{#each detail.related}}{{> components/project-card this}}{{/each}}
+        </div>
+      </section>
+    {{/if}}
+
+    <nav class="term-entry__pager" aria-label="Project navigation">
+      {{#if detail.previous}}<a href="{{detail.previous.href}}">{{icon "arrow-left" 16}}<span>{{detail.previous.name}}</span></a>{{/if}}
+      {{#if detail.next}}<a class="term-entry__pager-next" href="{{detail.next.href}}"><span>{{detail.next.name}}</span>{{icon "arrow-right" 16}}</a>{{/if}}
+    </nav>
+  </div>
+</article>

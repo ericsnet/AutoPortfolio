@@ -1,0 +1,35 @@
+<header class="site-header" data-nav>
+  <div class="container site-header__inner">
+    <a class="site-brand" href="{{nav.brand.href}}">
+      {{#if profile.avatar.src}}
+        <img class="site-brand__avatar" src="{{profile.avatar.src}}" alt="" width="32" height="32" loading="eager" decoding="async">
+      {{else}}
+        <span class="site-brand__monogram" aria-hidden="true">{{profile.monogram}}</span>
+      {{/if}}
+      <span class="site-brand__name">{{profile.name}}</span>
+    </a>
+
+    <button class="nav-toggle btn btn--ghost btn--icon" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-menu" aria-label="Toggle navigation" hidden>
+      {{icon "menu" 22}}
+    </button>
+
+    {{#if nav.enabled}}
+      <nav class="site-nav" id="site-menu" data-nav-menu data-open="false" aria-label="Sections">
+        <ul class="site-nav__list">
+          {{#each nav.items}}
+            <li><a class="site-nav__link" href="{{anchor}}">{{label}}</a></li>
+          {{/each}}
+        </ul>
+      </nav>
+    {{/if}}
+
+    <div class="site-header__actions">
+      {{#if theme.showsToggle}}
+        <button class="theme-toggle btn btn--ghost btn--icon" type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle colour theme">
+          <span data-theme-icon="light">{{icon "sun" 20}}</span>
+          <span data-theme-icon="dark" hidden>{{icon "moon" 20}}</span>
+        </button>
+      {{/if}}
+    </div>
+  </div>
+</header>

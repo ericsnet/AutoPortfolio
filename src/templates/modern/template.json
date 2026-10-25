@@ -1,0 +1,19 @@
+{
+  "name": "modern",
+  "label": "Modern",
+  "description": "Card-based layout with a gradient hero, sticky navigation and generous whitespace.",
+  "version": "1.0.0",
+  "author": "AutoPortfolio",
+  "license": "MIT",
+  "entry": "page.html",
+  "layout": "layout.html",
+  "project": "project.html",
+  "notFound": "not-found.html",
+  "styles": ["styles.css"],
+  "options": {
+    "heroStyle": "gradient",
+    "showHighlights": true,
+    "showTechStack": true
+  },
+  "preview": true
+}

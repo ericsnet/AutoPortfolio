@@ -1,0 +1,21 @@
+{{#if filters.length}}
+  <div class="project-filter" data-project-filter>
+    <div class="project-filter__buttons" role="group" aria-label="Filter projects by tag">
+      <button class="btn btn--ghost btn--small" type="button" data-filter-value="*" aria-pressed="true">All</button>
+      {{#each filters}}
+        <button class="btn btn--ghost btn--small" type="button" data-filter-value="{{this}}" aria-pressed="false">{{this}}</button>
+      {{/each}}
+    </div>
+    <p class="project-filter__count"><span data-filter-count>{{items.length}}</span> projects</p>
+  </div>
+{{/if}}
+{{#if featured.length}}
+  <div class="project-grid project-grid--featured">
+    {{#each featured}}{{> components/project-card this}}{{/each}}
+  </div>
+{{/if}}
+{{#if rest.length}}
+  <div class="project-grid">
+    {{#each rest}}{{> components/project-card this}}{{/each}}
+  </div>
+{{/if}}

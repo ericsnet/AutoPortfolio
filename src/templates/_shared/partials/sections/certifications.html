@@ -1,0 +1,22 @@
+<ul class="card-grid card-grid--certs">
+  {{#each items}}
+    <li class="card card--compact">
+      <div class="card__body">
+        <header class="card__header">
+          {{#if logo.src}}<img class="card__logo" src="{{logo.src}}" alt="" loading="lazy" decoding="async">{{/if}}
+          <h3 class="card__title">
+            {{#if href}}<a href="{{href}}"{{external href}}>{{title}}{{icon "external-link" 14}}</a>{{else}}{{title}}{{/if}}
+          </h3>
+        </header>
+        {{#if subtitle}}<p class="card__subtitle">{{subtitle}}</p>{{/if}}
+        <p class="card__meta">
+          {{#if dateLabel}}<time{{#if date}} datetime="{{date}}"{{/if}}>{{dateLabel}}</time>{{/if}}
+          {{#if expiresLabel}}<span class="card__expiry{{#if expired}} card__expiry--expired{{/if}}">Expires {{expiresLabel}}</span>{{/if}}
+          {{#if credentialId}}<span class="card__id">{{credentialId}}</span>{{/if}}
+        </p>
+        {{#if descriptionHtml}}<div class="prose card__description">{{{descriptionHtml}}}</div>{{/if}}
+        {{#if skills.length}}<ul class="chip-list chip-list--small">{{#each skills}}<li><span class="chip">{{this}}</span></li>{{/each}}</ul>{{/if}}
+      </div>
+    </li>
+  {{/each}}
+</ul>
