@@ -102,7 +102,7 @@ AutoPortfolio needs **Node.js 18.17 or newer**. It has no runtime dependencies.
 
 ```console
 # Clone and link it globally
-git clone https://github.com/Pickeric/AutoPortfolio.git
+git clone https://github.com/ericsnet/AutoPortfolio.git
 cd AutoPortfolio
 npm install
 npm link          # makes the `autoportfolio` command available everywhere
@@ -799,6 +799,10 @@ without a rewrite:
 
 ---
 
-## License
+## Copyright and license
 
-[MIT](LICENSE) © AutoPortfolio contributors.
+Copyright (c) 2026 ericsnet. All rights reserved.
+
+This repository and its original source code, documentation, designs, and assets are proprietary to ericsnet, except for third-party materials expressly identified as such. No permission is granted to use, reproduce, modify, distribute, sublicense, publish, or create derivative works from the original materials without prior written permission from ericsnet, except where applicable law provides otherwise.
+
+Third-party components, dependencies, and materials remain subject to their respective copyright notices and licenses. See [LICENSE](LICENSE) for details.
