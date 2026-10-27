@@ -43,7 +43,8 @@
     "typecheck": "tsc --noEmit",
     "build:example": "node bin/autoportfolio.js build --config examples/developer/portfolio.yaml --clean",
     "dev:example": "node bin/autoportfolio.js dev --config examples/developer/portfolio.yaml",
-    "demo": "node scripts/demo.js"
+    "demo": "node scripts/demo.js",
+    "studio": "node scripts/studio-server.js"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
