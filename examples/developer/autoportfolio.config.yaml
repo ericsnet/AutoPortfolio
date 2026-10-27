@@ -24,7 +24,7 @@ sections:
   numbered: true
 
 site:
-  baseUrl: https://eric.example.com
+  baseUrl: https://ericsnet.github.io/AutoPortfolio/
   trailingSlash: true
 
 assets:
@@ -46,3 +46,7 @@ content:
 
 serve:
   port: 4173
+
+deploy:
+  target: github-pages
+  basePath: /AutoPortfolio/
