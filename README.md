@@ -14,16 +14,29 @@ the look without touching a word of your content.
 
 ## Local CLI vs. browser-based use
 
-AutoPortfolio currently provides a full local generator and a **published example portfolio** on GitHub Pages. The example is a generated site, not yet a browser-based editor for creating arbitrary portfolios.
+AutoPortfolio now has two ways to work: the full local CLI and **AutoPortfolio Studio**, a no-install browser editor hosted on GitHub Pages. Both Studio entry points use the exact same frontend files.
 
-| | Local CLI | GitHub Pages browser app |
+**[Open AutoPortfolio Studio](https://ericsnet.github.io/AutoPortfolio/studio/)**
+
+| | Local CLI | Studio (GitHub Pages and local) |
 |---|---|---|
-| **Main advantage** | Runs the existing generator directly, with access to your project files and custom templates. | Would work from a browser without installing Node.js or cloning the repository. |
-| **Best for** | Full control over local files, custom assets and repeatable builds. | Quick access from Chromebooks, phones and computers where installing tools is inconvenient. |
-| **Current status** | Available; see the installation and CLI instructions below. | Not implemented yet. GitHub Pages cannot run the Node.js backend or filesystem APIs used by the current generator. |
-| **Parity requirement** | The reference implementation for the current feature set. | Must not be described as equivalent until its browser-compatible engine supports the same templates, themes, validation, configuration and export targets. |
+| **Main advantage** | Full access to the existing Node.js generator, local project files, custom templates and build configuration. | No installation or account; edit details, see a live preview, and export a standalone HTML portfolio or JSON data file. |
+| **Best for** | Full-featured builds, custom assets, project configuration and repeatable local workflows. | Quick editing on Chromebooks, phones and shared or restricted computers. |
+| **Runs where?** | On your computer with Node.js 18.17+. | In a modern browser; the same Studio frontend can also be served locally. |
+| **Trade-off** | Requires Node.js and command-line setup. | The browser Studio currently supports a focused portfolio editor and standalone HTML export; it does **not yet expose every CLI feature**, including the full custom template/theme pipeline and all build targets. |
 
-**Why this matters:** GitHub Pages only hosts static files. A true no-install version must move the generator's compatible logic into the browser and replace Node.js filesystem operations with browser equivalents. Until that work is complete, the live Pages link is only a demo of generated output, not a full web version of AutoPortfolio.
+### Run the same Studio frontend locally
+
+Install Node.js 18.17 or newer, clone this repository, then run:
+
+```console
+$ npm run studio
+  AutoPortfolio Studio: http://127.0.0.1:4174
+```
+
+Open the local URL. It serves the same `studio/` files published on GitHub Pages. Your draft is saved in browser storage; exporting the site downloads a standalone HTML file, and exporting data downloads JSON.
+
+**Architecture note:** GitHub Pages serves static files only, so Studio runs in the browser without a backend. The full local CLI remains available and unchanged. Studio and the CLI share the goal and content model, but browser Studio is currently a smaller feature set—not a claim of complete CLI parity.
 
 ```console
 $ npx autoportfolio init my-portfolio
