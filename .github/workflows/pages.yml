@@ -9,6 +9,7 @@ on:
       - "examples/developer/**"
       - "bin/**"
       - "scripts/**"
+      - "studio/**"
       - "test/**"
       - "package.json"
       - "package-lock.json"
