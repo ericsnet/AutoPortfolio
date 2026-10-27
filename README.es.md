@@ -8,18 +8,31 @@ AutoPortfolio es un generador de portafolios centrado en el contenido. Descríbe
 
 **Demo en vivo:** [Ver el portafolio de ejemplo generado](https://ericsnet.github.io/AutoPortfolio/). El flujo de trabajo `.github/workflows/pages.yml` genera el ejemplo y lo publica en GitHub Pages cuando cambian archivos de origen relevantes.
 
-## Uso local frente al uso desde el navegador
+## CLI local frente al uso desde el navegador
 
-AutoPortfolio ofrece actualmente un generador local completo y un **portfolio de ejemplo publicado en GitHub Pages**. La demo es un sitio generado, no un editor web para crear cualquier portfolio.
+AutoPortfolio ofrece dos formas de trabajar: la CLI local completa y **AutoPortfolio Studio**, un editor web que no requiere instalación y se publica en GitHub Pages. Ambos puntos de acceso de Studio utilizan exactamente los mismos archivos de frontend.
 
-| | CLI local | Aplicación en el navegador mediante GitHub Pages |
+**[Abrir AutoPortfolio Studio](https://ericsnet.github.io/AutoPortfolio/studio/)**
+
+| | CLI local | Studio (GitHub Pages y local) |
 |---|---|---|
-| **Ventaja principal** | Ejecuta el generador existente directamente, con acceso a los archivos del proyecto y a plantillas personalizadas. | Permitiría usarlo desde el navegador sin instalar Node.js ni clonar el repositorio. |
-| **Ideal para** | Tener control completo de archivos locales, recursos personalizados y compilaciones reproducibles. | Acceder rápidamente desde Chromebooks, móviles y ordenadores donde instalar herramientas resulte incómodo. |
-| **Estado actual** | Disponible; consulta las instrucciones de instalación y CLI de abajo. | Todavía no está implementada. GitHub Pages no puede ejecutar el backend de Node.js ni las API del sistema de archivos que usa el generador actual. |
-| **Requisito de paridad** | Es la implementación de referencia para las funciones actuales. | No debe presentarse como equivalente hasta que el motor compatible con el navegador admita las mismas plantillas, temas, validaciones, configuración y formatos de exportación. |
+| **Ventaja principal** | Acceso completo al generador Node.js existente, los archivos locales, las plantillas personalizadas y la configuración de compilación. | Sin instalación ni cuenta: editar datos, ver una vista previa en directo y exportar un portfolio HTML independiente o los datos en JSON. |
+| **Ideal para** | Compilaciones completas, recursos personalizados, configuración del proyecto y flujos de trabajo reproducibles. | Edición rápida desde Chromebooks, móviles y ordenadores compartidos o restringidos. |
+| **Dónde se ejecuta** | En tu ordenador con Node.js 18.17 o superior. | En un navegador moderno; el mismo frontend de Studio también puede servirse localmente. |
+| **Limitación** | Requiere Node.js y configuración mediante la terminal. | Studio ofrece actualmente un editor enfocado y exportación HTML independiente; todavía **no incluye todas las funciones de la CLI**, como el sistema completo de plantillas/temas personalizados y todos los destinos de compilación. |
 
-**Por qué importa:** GitHub Pages solo aloja archivos estáticos. Una versión real que no requiera instalación debe trasladar al navegador la lógica compatible del generador y sustituir las operaciones del sistema de archivos de Node.js por alternativas web. Hasta completar ese trabajo, el enlace de Pages es solo una demo del resultado generado, no una versión web completa de AutoPortfolio.
+### Ejecutar localmente el mismo frontend de Studio
+
+Instala Node.js 18.17 o posterior, clona este repositorio y ejecuta:
+
+```console
+$ npm run studio
+  AutoPortfolio Studio: http://127.0.0.1:4174
+```
+
+Abre la URL local. Sirve los mismos archivos de `studio/` que se publican en GitHub Pages. El borrador se guarda en el almacenamiento del navegador; al exportar el sitio se descarga un archivo HTML independiente y al exportar los datos se descarga JSON.
+
+**Nota de arquitectura:** GitHub Pages solo sirve archivos estáticos, así que Studio se ejecuta en el navegador sin backend. La CLI local completa sigue disponible y no se ha eliminado. Studio y la CLI comparten el objetivo y el modelo de contenido, pero Studio es actualmente un conjunto de funciones más reducido; no se afirma que tenga paridad completa con la CLI.
 
 ```console
 $ npx autoportfolio init my-portfolio
