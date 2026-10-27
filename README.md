@@ -12,6 +12,19 @@ the look without touching a word of your content.
 
 **Live demo:** [View the generated example portfolio](https://ericsnet.github.io/AutoPortfolio/). The `.github/workflows/pages.yml` workflow builds the example and publishes it to GitHub Pages when relevant source files change.
 
+## Local CLI vs. browser-based use
+
+AutoPortfolio currently provides a full local generator and a **published example portfolio** on GitHub Pages. The example is a generated site, not yet a browser-based editor for creating arbitrary portfolios.
+
+| | Local CLI | GitHub Pages browser app |
+|---|---|---|
+| **Main advantage** | Runs the existing generator directly, with access to your project files and custom templates. | Would work from a browser without installing Node.js or cloning the repository. |
+| **Best for** | Full control over local files, custom assets and repeatable builds. | Quick access from Chromebooks, phones and computers where installing tools is inconvenient. |
+| **Current status** | Available; see the installation and CLI instructions below. | Not implemented yet. GitHub Pages cannot run the Node.js backend or filesystem APIs used by the current generator. |
+| **Parity requirement** | The reference implementation for the current feature set. | Must not be described as equivalent until its browser-compatible engine supports the same templates, themes, validation, configuration and export targets. |
+
+**Why this matters:** GitHub Pages only hosts static files. A true no-install version must move the generator's compatible logic into the browser and replace Node.js filesystem operations with browser equivalents. Until that work is complete, the live Pages link is only a demo of generated output, not a full web version of AutoPortfolio.
+
 ```console
 $ npx autoportfolio init my-portfolio
 $ cd my-portfolio
