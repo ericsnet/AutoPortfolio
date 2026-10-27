@@ -1,5 +1,7 @@
 # AutoPortfolio
 
+
+**Languages:** English | [Español](README.es.md)
 **One structured file in, one complete portfolio website out.**
 
 AutoPortfolio is a content-first portfolio generator. You describe yourself once —
