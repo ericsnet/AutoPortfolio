@@ -8,6 +8,8 @@ readable YAML, JSON or TOML file, and AutoPortfolio renders a fast, accessible,
 responsive static site from it. Templates and themes are separate concerns: change
 the look without touching a word of your content.
 
+**Live demo:** [View the generated example portfolio](https://ericsnet.github.io/AutoPortfolio/). The `.github/workflows/pages.yml` workflow builds the example and publishes it to GitHub Pages when relevant source files change.
+
 ```console
 $ npx autoportfolio init my-portfolio
 $ cd my-portfolio
