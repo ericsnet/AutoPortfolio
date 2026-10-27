@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111318">
+  <meta name="description" content="Build and export a personal portfolio in your browser with AutoPortfolio Studio.">
+  <title>AutoPortfolio Studio</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="AutoPortfolio Studio home"><span class="brand-mark">A</span><span>AutoPortfolio <small>STUDIO</small></span></a>
+    <div class="top-actions">
+      <span class="privacy"><i></i><span data-i18n="private">Runs in your browser</span></span>
+      <button id="languageToggle" class="button button-quiet" type="button">Español</button>
+      <button id="exportButton" class="button button-primary" type="button" data-i18n="export">Export website ↗</button>
+    </div>
+  </header>
+  <main class="app-shell">
+    <section class="intro">
+      <div>
+        <p class="eyebrow" data-i18n="eyebrow">YOUR PORTFOLIO, YOUR FILES</p>
+        <h1 data-i18n="heading">Make your work<br><span>easy to discover.</span></h1>
+        <p class="intro-copy" data-i18n="intro">Create a clean portfolio, preview it live, and export a standalone HTML website. No account. No upload.</p>
+      </div>
+      <div class="intro-note"><span class="note-icon">↳</span><div><strong data-i18n="noteTitle">Local by design</strong><p data-i18n="noteBody">Your draft stays in this browser unless you export or share it.</p></div></div>
+    </section>
+    <div class="workspace">
+      <section class="editor panel">
+        <div class="panel-heading"><div><span class="step-label">01 / <span data-i18n="stepEdit">EDIT</span></span><h2 data-i18n="details">Portfolio details</h2></div><button id="resetButton" class="text-button" type="button" data-i18n="reset">Reset</button></div>
+        <form id="portfolioForm">
+          <div class="field-grid">
+            <label><span data-i18n="name">Full name</span><input id="name" name="name" autocomplete="name" placeholder="Alex Morgan" maxlength="100" required></label>
+            <label><span data-i18n="role">Role / headline</span><input id="role" name="role" placeholder="Designer & developer" maxlength="140"></label>
+            <label><span data-i18n="location">Location</span><input id="location" name="location" placeholder="Madrid, Spain" maxlength="120"></label>
+            <label><span data-i18n="email">Email</span><input id="email" name="email" type="email" placeholder="hello@example.com" maxlength="180"></label>
+            <label class="span-2"><span data-i18n="bio">Short introduction</span><textarea id="bio" name="bio" rows="3" maxlength="700" placeholder="A short introduction about what you do and what you care about."></textarea></label>
+            <label><span>Website</span><input id="website" name="website" type="url" placeholder="https://example.com" maxlength="300"></label>
+            <label><span>GitHub</span><input id="github" name="github" type="url" placeholder="https://github.com/username" maxlength="300"></label>
+          </div>
+          <div class="section-rule"></div>
+          <div class="subheading"><div><span class="step-label">02 / <span data-i18n="stepSkills">SKILLS</span></span><h3 data-i18n="skills">Skills</h3></div><span class="helper" data-i18n="comma">Separate with commas</span></div>
+          <label class="full"><span data-i18n="skillsLabel">Your skills</span><input id="skills" name="skills" placeholder="JavaScript, UI design, Accessibility"></label>
+          <div class="section-rule"></div>
+          <div class="subheading"><div><span class="step-label">03 / <span data-i18n="stepProjects">PROJECTS</span></span><h3 data-i18n="projects">Selected projects</h3></div><button id="addProject" class="button button-small" type="button" data-i18n="addProject">+ Add project</button></div>
+          <div id="projectsEditor" class="projects-editor"></div>
+          <div class="section-rule"></div>
+          <div class="subheading"><div><span class="step-label">04 / <span data-i18n="stepStyle">STYLE</span></span><h3 data-i18n="appearance">Appearance</h3></div></div>
+          <label class="full"><span data-i18n="theme">Theme</span><select id="theme" name="theme"><option value="midnight" data-i18n="midnight">Midnight — dark and focused</option><option value="paper" data-i18n="paper">Paper — light and editorial</option><option value="forest" data-i18n="forest">Forest — muted green</option></select></label>
+          <div class="form-footer"><span class="autosave"><i></i><span data-i18n="autosaved">Draft saved in this browser</span></span><button id="downloadData" class="button button-secondary" type="button" data-i18n="downloadData">Export data (.json)</button></div>
+        </form>
+      </section>
+      <section class="preview-column">
+        <div class="preview-toolbar"><div><span class="step-label">LIVE / <span data-i18n="stepPreview">PREVIEW</span></span><strong data-i18n="livePreview">Live preview</strong></div><div class="preview-actions"><button id="importData" class="text-button" type="button" data-i18n="importData">Import JSON</button><span class="device-pill"><span class="device-dot"></span><span data-i18n="desktop">Desktop</span></span></div></div>
+        <div class="preview-frame"><iframe id="preview" title="Live portfolio preview" sandbox="allow-same-origin"></iframe></div>
+        <p class="preview-foot"><span data-i18n="previewHint">Preview updates as you type.</span><span>HTML · CSS · No build step</span></p>
+      </section>
+    </div>
+    <footer class="footer"><span>AutoPortfolio Studio</span><span data-i18n="footer">Browser edition · Static export · No account required</span><a href="https://github.com/ericsnet/AutoPortfolio" target="_blank" rel="noreferrer">Source on GitHub ↗</a></footer>
+  </main>
+  <input id="jsonFile" type="file" accept="application/json,.json" hidden>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
