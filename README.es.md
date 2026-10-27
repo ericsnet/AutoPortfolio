@@ -8,6 +8,19 @@ AutoPortfolio es un generador de portafolios centrado en el contenido. Descríbe
 
 **Demo en vivo:** [Ver el portafolio de ejemplo generado](https://ericsnet.github.io/AutoPortfolio/). El flujo de trabajo `.github/workflows/pages.yml` genera el ejemplo y lo publica en GitHub Pages cuando cambian archivos de origen relevantes.
 
+## Uso local frente al uso desde el navegador
+
+AutoPortfolio ofrece actualmente un generador local completo y un **portfolio de ejemplo publicado en GitHub Pages**. La demo es un sitio generado, no un editor web para crear cualquier portfolio.
+
+| | CLI local | Aplicación en el navegador mediante GitHub Pages |
+|---|---|---|
+| **Ventaja principal** | Ejecuta el generador existente directamente, con acceso a los archivos del proyecto y a plantillas personalizadas. | Permitiría usarlo desde el navegador sin instalar Node.js ni clonar el repositorio. |
+| **Ideal para** | Tener control completo de archivos locales, recursos personalizados y compilaciones reproducibles. | Acceder rápidamente desde Chromebooks, móviles y ordenadores donde instalar herramientas resulte incómodo. |
+| **Estado actual** | Disponible; consulta las instrucciones de instalación y CLI de abajo. | Todavía no está implementada. GitHub Pages no puede ejecutar el backend de Node.js ni las API del sistema de archivos que usa el generador actual. |
+| **Requisito de paridad** | Es la implementación de referencia para las funciones actuales. | No debe presentarse como equivalente hasta que el motor compatible con el navegador admita las mismas plantillas, temas, validaciones, configuración y formatos de exportación. |
+
+**Por qué importa:** GitHub Pages solo aloja archivos estáticos. Una versión real que no requiera instalación debe trasladar al navegador la lógica compatible del generador y sustituir las operaciones del sistema de archivos de Node.js por alternativas web. Hasta completar ese trabajo, el enlace de Pages es solo una demo del resultado generado, no una versión web completa de AutoPortfolio.
+
 ```console
 $ npx autoportfolio init my-portfolio
 $ cd my-portfolio
