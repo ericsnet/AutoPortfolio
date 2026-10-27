@@ -8,8 +8,11 @@ on:
       - "src/**"
       - "examples/developer/**"
       - "bin/**"
+      - "scripts/**"
+      - "test/**"
       - "package.json"
       - "package-lock.json"
+      - "tsconfig.json"
   workflow_dispatch:
 
 permissions:
@@ -36,6 +39,15 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Check types
+        run: npm run typecheck
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
 
       - name: Build demo portfolio
         run: node bin/autoportfolio.js build --config examples/developer/autoportfolio.config.yaml --strict --clean --target github-pages
