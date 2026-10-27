@@ -52,6 +52,9 @@ jobs:
       - name: Build demo portfolio
         run: node bin/autoportfolio.js build --config examples/developer/autoportfolio.config.yaml --strict --clean --target github-pages
 
+      - name: Add browser Studio
+        run: mkdir -p examples/developer/dist/studio && cp -R studio/. examples/developer/dist/studio/
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
